@@ -1,10 +1,10 @@
 # Emotion_Analysis
 😊 Emotion Analysis System
-
 A modern, responsive Emotion Analysis Web Application built using Python (Flask) and MySQL. The application analyzes user-entered text to identify emotions using keyword-based sentiment detection and provides analytics through an interactive dashboard.
 
 🚀 Features
 😊 Detect emotions from text
+
 🎯 Supports multiple emotions:
 Happy
 Sad
@@ -17,6 +17,7 @@ Neutral
 📥 Export records to CSV
 🌙 Dark & Light Theme
 📱 Fully Responsive UI
+
 🛠️ Tech Stack
 Frontend
 HTML5
@@ -27,6 +28,7 @@ Python
 Flask
 Database
 MySQL
+
 📂 Project Structure
 EmotionAnalysisSystem/
 │
@@ -41,37 +43,7 @@ EmotionAnalysisSystem/
 ├── sql/
 │   └── setup.sql
 └── README.md
-⚙️ Installation
-Clone Repository
-git clone https://github.com/yourusername/EmotionAnalysisSystem.git
-cd EmotionAnalysisSystem
-Install Dependencies
-pip install -r requirements.txt
-Configure MySQL
 
-Create the database using:
-
-SOURCE sql/setup.sql;
-
-Update database credentials inside:
-
-db_connection.py
-▶️ Run the Project
-python app.py
-
-Visit
-
-http://127.0.0.1:5000
-📊 Dashboard
-
-The application includes:
-
-Emotion Distribution
-Total Analyses
-Recent Records
-Interactive Charts
-Search Filters
-CSV Export
 🎯 Supported Emotions
 Emotion	Emoji
 Happy	😊
@@ -98,12 +70,4 @@ Voice Emotion Detection
 Multi-language Support
 User Authentication
 REST API
-🤝 Contributing
 
-Contributions are welcome!
-
-Fork the repository
-Create a new branch
-Commit your changes
-Push the branch
-Open a Pull Request

@@ -51,9 +51,6 @@ Sad	😢
 Angry	😠
 Fear	😨
 Neutral	😐
-📸 Screenshots
-
-Add screenshots here.
 
 Example:
 

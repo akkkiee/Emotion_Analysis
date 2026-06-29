@@ -1,4 +1,3 @@
-
 from flask import Flask, render_template, request, redirect, url_for, session, flash, jsonify, Response
 import csv, io
 from dao import save_emotion, get_history, get_emotion_counts, get_total_count

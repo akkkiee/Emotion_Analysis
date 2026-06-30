@@ -52,13 +52,6 @@ Angry	😠
 Fear	😨
 Neutral	😐
 
-Example:
-
-screenshots/
-├── home.png
-├── dashboard.png
-├── history.png
-└── result.png
 📌 Future Improvements
 Machine Learning based emotion detection
 NLP using NLTK or spaCy

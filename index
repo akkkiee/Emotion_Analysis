@@ -1,0 +1,15 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Emotion Analyzer</title>
+</head>
+<body>
+    <h2>How are you feeling today?</h2>
+    
+    <form action="analyze" method="POST">
+        <textarea name="textInput" rows="5" cols="50" placeholder="Type your thoughts here..." required></textarea>
+        <br><br>
+        <button type="submit">Analyze Text</button>
+    </form>
+</body>
+</html>

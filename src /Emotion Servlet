@@ -1,0 +1,32 @@
+import java.io.IOException;
+import java.util.Map;
+import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+@WebServlet("/analyze")
+public class EmotionServlet extends HttpServlet {
+    
+    // Instantiate our logic class
+    private EmotionService service = new EmotionService();
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+            throws ServletException, IOException {
+        
+        // 1. Grab the text the user typed
+        String userInput = request.getParameter("textInput");
+        
+        // 2. Analyze the text
+        Map<String, String> analysis = service.analyze(userInput);
+        
+        // 3. Attach the results to the request so the JSP can see them
+        request.setAttribute("originalText", userInput);
+        request.setAttribute("detectedEmotion", analysis.get("emotion"));
+        
+        // 4. Forward the user to the result page
+        request.getRequestDispatcher("result.jsp").forward(request, response);
+    }
+}

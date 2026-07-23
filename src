@@ -1,0 +1,28 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class EmotionService {
+
+    public Map<String, String> analyze(String text) {
+        Map<String, String> result = new HashMap<>();
+        
+        if (text == null || text.trim().isEmpty()) {
+            result.put("emotion", "Neutral");
+            return result;
+        }
+
+        String lowerText = text.toLowerCase();
+        
+        if (lowerText.contains("happy") || lowerText.contains("great") || lowerText.contains("love")) {
+            result.put("emotion", "Joy");
+        } else if (lowerText.contains("sad") || lowerText.contains("cry") || lowerText.contains("terrible")) {
+            result.put("emotion", "Sadness");
+        } else if (lowerText.contains("angry") || lowerText.contains("hate") || lowerText.contains("mad")) {
+            result.put("emotion", "Anger");
+        } else {
+            result.put("emotion", "Neutral");
+        }
+
+        return result;
+    }
+}

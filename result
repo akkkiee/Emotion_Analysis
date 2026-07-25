@@ -1,0 +1,15 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
+<head>
+    <title>Analysis Result</title>
+</head>
+<body>
+    <h2>Emotion Analysis Complete</h2>
+    
+    <p><strong>You wrote:</strong> ${originalText}</p>
+    <p><strong>Detected Emotion:</strong> ${detectedEmotion}</p>
+    
+    <br>
+    <a href="index.jsp">Analyze another sentence</a>
+</body>
+</html>

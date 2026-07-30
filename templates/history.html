@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}Analysis History - Emotion Analysis System{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-12 animate-pop-in">
+        <div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center mb-4 gap-3">
+            <div>
+                <h1 class="display-5 fw-bold text-uppercase tracking-wider">Analysis Log History</h1>
+                <p class="text-muted mb-0">Browse, search, and filter through all emotion analyses saved in the database.</p>
+            </div>
+            <div>
+                <a href="/export-csv?search={{ search_query or '' }}&emotion={{ emotion_filter or '' }}" class="btn btn-success rounded-pill px-4 py-2.5 shadow">
+                    <i class="fas fa-file-csv me-2"></i>Export Filtered CSV
+                </a>
+            </div>
+        </div>
+        <div class="card glass-card shadow p-4 mb-4">
+            <form method="GET" action="/history" class="row g-3 align-items-end">
+                <div class="col-md-5">
+                    <label for="search" class="form-label fw-semibold"><i class="fas fa-search me-2 text-primary"></i>Search Text</label>
+                    <input type="text" class="form-control py-2" id="search" name="search" placeholder="Search analyzed words..." value="{{ search_query or '' }}">
+                </div>
+                <div class="col-md-3">
+                    <label for="emotion" class="form-label fw-semibold"><i class="fas fa-filter me-2 text-primary"></i>Filter Emotion</label>
+                    <select class="form-select py-2" id="emotion" name="emotion">
+                        <option value="">-- All Emotions --</option>
+                        <option value="Happy" {% if emotion_filter == 'Happy' %}selected{% endif %}>Happy 😊</option>
+                        <option value="Sad" {% if emotion_filter == 'Sad' %}selected{% endif %}>Sad 😢</option>
+                        <option value="Angry" {% if emotion_filter == 'Angry' %}selected{% endif %}>Angry 😠</option>
+                        <option value="Fear" {% if emotion_filter == 'Fear' %}selected{% endif %}>Fear 😨</option>
+                        <option value="Neutral" {% if emotion_filter == 'Neutral' %}selected{% endif %}>Neutral 😐</option>
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex gap-2">
+                    <button type="submit" class="btn btn-primary py-2 flex-grow-1 rounded-pill shadow-sm"><i class="fas fa-search me-2"></i>Apply Filter</button>
+                    <a href="/history" class="btn btn-outline-secondary py-2 px-3 rounded-pill"><i class="fas fa-undo"></i> Reset</a>
+                </div>
+            </form>
+        </div>
+        <div class="card glass-card shadow border-0 overflow-hidden">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle mb-0">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col" style="width: 80px;" class="ps-4 py-3">ID</th>
+                            <th scope="col" class="py-3">Analyzed Text</th>
+                            <th scope="col" style="width: 180px;" class="py-3">Detected Emotion</th>
+                            <th scope="col" style="width: 240px;" class="pe-4 py-3">Date & Time</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if records %}
+                            {% for record in records %}
+                            <tr>
+                                <td class="ps-4 fw-semibold text-muted">{{ record.id }}</td>
+                                <td class="text-wrap" style="max-width: 450px;"><span class="fst-italic text-break">"{{ record.user_text }}"</span></td>
+                                <td>
+                                    {% if record.emotion == 'Happy' %}<span class="badge badge-happy px-3 py-2 rounded-pill"><i class="fas fa-smile me-1"></i> Happy 😊</span>
+                                    {% elif record.emotion == 'Sad' %}<span class="badge badge-sad px-3 py-2 rounded-pill"><i class="fas fa-sad-tear me-1"></i> Sad 😢</span>
+                                    {% elif record.emotion == 'Angry' %}<span class="badge badge-angry px-3 py-2 rounded-pill"><i class="fas fa-angry me-1"></i> Angry 😠</span>
+                                    {% elif record.emotion == 'Fear' %}<span class="badge badge-fear px-3 py-2 rounded-pill"><i class="fas fa-surprise me-1"></i> Fear 😨</span>
+                                    {% else %}<span class="badge badge-neutral px-3 py-2 rounded-pill"><i class="fas fa-meh me-1"></i> Neutral 😐</span>{% endif %}
+                                </td>
+                                <td class="pe-4 text-muted small">{{ record.created_at }}</td>
+                            </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="4" class="text-center py-5 text-muted">
+                                    <i class="far fa-folder-open fa-3x mb-3 text-secondary opacity-50"></i>
+                                    <h5>No records found</h5>
+                                    <p class="mb-0 small">Try broadening your search keywords.</p>
+                                </td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

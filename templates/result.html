@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %}Analysis Result - Emotion Analysis System{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-7 col-md-9">
+        <div class="mb-4 animate-pop-in">
+            <a href="/" class="text-decoration-none text-muted"><i class="fas fa-arrow-left me-2"></i>Back to Analyzer</a>
+        </div>
+        {% set card_theme = 'card-neutral' %}
+        {% set text_theme = 'text-gradient-neutral' %}
+        {% if emotion == 'Happy' %}{% set card_theme = 'card-happy' %}{% set text_theme = 'text-gradient-happy' %}
+        {% elif emotion == 'Sad' %}{% set card_theme = 'card-sad' %}{% set text_theme = 'text-gradient-sad' %}
+        {% elif emotion == 'Angry' %}{% set card_theme = 'card-angry' %}{% set text_theme = 'text-gradient-angry' %}
+        {% elif emotion == 'Fear' %}{% set card_theme = 'card-fear' %}{% set text_theme = 'text-gradient-fear' %}{% endif %}
+        <div class="card glass-card {{ card_theme }} animate-pop-in p-5 text-center shadow">
+            <div class="card-body">
+                <span class="emoji-lg animate-float mb-3">{{ emoji }}</span>
+                <h4 class="text-muted fw-normal mb-1">Analysis Outcome</h4>
+                <h1 class="{{ text_theme }} display-3 mb-4 fw-bold">{{ emotion }}</h1>
+                <div class="p-3 bg-white bg-opacity-10 rounded border border-white border-opacity-10 mb-4 text-start">
+                    <strong class="d-block text-muted mb-1 small text-uppercase tracking-wider">Analyzed Text</strong>
+                    <span class="fs-5">"${text}"</span>
+                </div>
+                <div class="text-start mb-4">
+                    <strong class="d-block text-muted mb-2 small text-uppercase tracking-wider">Matching Keywords</strong>
+                    <div class="d-flex flex-wrap">
+                        {% if keywords %}
+                            {% for keyword in keywords %}
+                                <span class="badge bg-primary bg-opacity-25 text-primary border border-primary border-opacity-25 px-3 py-2 rounded-pill me-2 mb-2 fs-7">{{ keyword }}</span>
+                            {% endfor %}
+                        {% else %}
+                            <span class="text-muted fst-italic">No emotion keywords found. Defaults to Neutral.</span>
+                        {% endif %}
+                    </div>
+                </div>
+                <hr class="my-4 opacity-25">
+                <div class="d-flex justify-content-center gap-3">
+                    <a href="/" class="btn btn-outline-secondary px-4 rounded-pill"><i class="fas fa-undo-alt me-2"></i>Analyze Another</a>
+                    <a href="/history" class="btn btn-primary px-4 rounded-pill shadow"><i class="fas fa-history me-2"></i>View History</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

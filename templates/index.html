@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}Analyze Emotion - Emotion Analysis System{% endblock %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-lg-8 col-md-10">
+        <div class="text-center mb-5 animate-pop-in">
+            <h1 class="display-4 fw-bold mb-2 text-uppercase tracking-wide">Analyze Your Emotion</h1>
+            <p class="lead text-muted">Enter any text below, and our intelligent keyword-matching engine will detect the emotional tone.</p>
+        </div>
+        <div class="card glass-card p-4 shadow animate-pop-in">
+            <div class="card-body">
+                <form id="analysis-form" action="/analyze" method="POST">
+                    <div class="mb-4">
+                        <label for="user-text" class="form-label fs-5 fw-semibold mb-2">
+                            <i class="far fa-edit text-primary me-2"></i>What are you feeling right now?
+                        </label>
+                        <textarea 
+                            class="form-control p-3 fs-5" 
+                            id="user-text" 
+                            name="user_text" 
+                            rows="5" 
+                            maxlength="500" 
+                            placeholder="Type how you feel... (e.g., 'I am happy and love coding in python' or 'I am very scared and worried about tests')" 
+                            required></textarea>
+                        <div class="form-text text-end mt-1 text-muted">Maximum 500 characters.</div>
+                    </div>
+                    <div class="d-grid gap-2">
+                        <button type="submit" id="submit-btn" class="btn btn-primary btn-lg rounded-pill py-3 shadow">
+                            <span id="btn-spinner" class="spinner-border spinner-border-sm me-2 d-none" role="status"></span>
+                            <span id="btn-text"><i class="fas fa-brain me-2"></i>Analyze Emotion</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div id="result-container" class="mt-4"></div>
+    </div>
+</div>
+{% endblock %}
